@@ -219,5 +219,34 @@ namespace DAN_XLIV_Milica_Karetic
                 return false;
             }
         }
+
+        /// <summary>
+        /// chech user order status 
+        /// </summary>
+        /// <param name="userID">user id</param>
+        /// <returns>pending or not</returns>
+        public string GetOrderStatus(int userID)
+        {
+            try
+            {
+                using (OrderDBEntities1 context = new OrderDBEntities1())
+                {
+                    List<tblOrder> orders = new List<tblOrder>();
+                    orders = context.tblOrders.ToList();
+
+                    List<tblOrder> userOrders = orders.Where(u => u.UserID == userID).ToList();
+
+                    string status = userOrders[userOrders.Count - 1].OrderStatus;
+
+                    return status;
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+                return null;
+            }
+        }
     }
 }

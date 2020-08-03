@@ -23,10 +23,6 @@ namespace DAN_XLIV_Milica_Karetic
         {
             TextBox objTextBox = (TextBox)sender;
             quantity = objTextBox.Text;
-            if (quantity != null)
-            {
-                totalPrice = int.Parse(quantity) * 4;
-            }
         }
 
         private void TxtTotalPrice_TextChanged(object sender, TextChangedEventArgs e)

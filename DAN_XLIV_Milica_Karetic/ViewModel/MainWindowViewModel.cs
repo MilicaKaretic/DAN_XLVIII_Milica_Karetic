@@ -108,22 +108,31 @@ namespace DAN_XLIV_Milica_Karetic.ViewModel
                     OrderDBEntities1 db = new OrderDBEntities1();
                     tblOrder order = new tblOrder();
                     string quantityItem = MainWindow.quantity;
-                    DateTime dateNow = DateTime.Now;
 
-                    order.TotalPrice = Item.ItemPrice * int.Parse(quantityItem);
-                    order.OrderStatus = "pending";
-                    order.OrderCreated = dateNow;
-                    order.UserID = Service.currentUser.UserID;
-                    order.ItemID = Item.ItemID;
+                    if(Int32.TryParse(quantityItem, out int quantity))
+                    {
+                        DateTime dateNow = DateTime.Now;
 
-                    Service.currentOrder = order;
-                    db.tblOrders.Add(order);
-                    db.SaveChanges();
+                        order.TotalPrice = Item.ItemPrice * int.Parse(quantityItem);
+                        order.OrderStatus = "pending";
+                        order.OrderCreated = dateNow;
+                        order.UserID = Service.currentUser.UserID;
+                        order.ItemID = Item.ItemID;
 
-                    MessageBox.Show("Order successfuly created. Your order is pending.");
-                    Login log = new Login();
-                    main.Close();
-                    log.Show();
+                        Service.currentOrder = order;
+                        db.tblOrders.Add(order);
+                        db.SaveChanges();
+
+                        MessageBox.Show("Order successfuly created. Your order is pending.");
+                        Login log = new Login();
+                        main.Close();
+                        log.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please enter number.");
+                    }
+                   
 
                 }
 

@@ -4,6 +4,7 @@ using DAN_XLIV_Milica_Karetic.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -253,6 +254,16 @@ namespace DAN_XLIV_Milica_Karetic.ViewModel
                         }
                         else
                         {
+                            if(service.GetOrderStatus(UserList[i].UserID) == "approved")
+                            {
+                                MessageBox.Show("Your order has been approved");
+                                Thread.Sleep(2000);
+                            }
+                            else if(service.GetOrderStatus(UserList[i].UserID) == "denied")
+                            {
+                                MessageBox.Show("Your order has been denied");
+                                Thread.Sleep(2000);
+                            }
                             MainWindow mw = new MainWindow();
                             LabelInfo = "Logged in";
                             found = true;
@@ -264,8 +275,6 @@ namespace DAN_XLIV_Milica_Karetic.ViewModel
                         found = true;
                     }
                 }
-
-
 
                 if (found == false)
                 {
