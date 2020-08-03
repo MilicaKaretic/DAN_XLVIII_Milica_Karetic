@@ -111,22 +111,30 @@ namespace DAN_XLIV_Milica_Karetic.ViewModel
 
                     if(Int32.TryParse(quantityItem, out int quantity))
                     {
-                        DateTime dateNow = DateTime.Now;
+                        if(quantity != 0)
+                        {
+                            DateTime dateNow = DateTime.Now;
 
-                        order.TotalPrice = Item.ItemPrice * int.Parse(quantityItem);
-                        order.OrderStatus = "pending";
-                        order.OrderCreated = dateNow;
-                        order.UserID = Service.currentUser.UserID;
-                        order.ItemID = Item.ItemID;
+                            order.TotalPrice = Item.ItemPrice * int.Parse(quantityItem);
+                            order.OrderStatus = "pending";
+                            order.OrderCreated = dateNow;
+                            order.UserID = Service.currentUser.UserID;
+                            order.ItemID = Item.ItemID;
 
-                        Service.currentOrder = order;
-                        db.tblOrders.Add(order);
-                        db.SaveChanges();
+                            Service.currentOrder = order;
+                            db.tblOrders.Add(order);
+                            db.SaveChanges();
 
-                        MessageBox.Show("Order successfuly created. Your order is pending.");
-                        Login log = new Login();
-                        main.Close();
-                        log.Show();
+                            MessageBox.Show("Order successfuly created. Your order is pending.");
+                            Login log = new Login();
+                            main.Close();
+                            log.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please enter number bigger than 0.");
+                        }
+                        
                     }
                     else
                     {
