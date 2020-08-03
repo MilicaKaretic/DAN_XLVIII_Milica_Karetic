@@ -80,6 +80,47 @@ namespace DAN_XLIV_Milica_Karetic
         }
 
         /// <summary>
+        /// delete order
+        /// </summary>
+        /// <param name="orderID">order id</param>
+        public void AddUser(tblUser user)
+        {
+            try
+            {
+                using (OrderDBEntities1 context = new OrderDBEntities1())
+                {
+                    context.tblUsers.Add(user);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// delete order
+        /// </summary>
+        /// <param name="orderID">order id</param>
+        public tblUser GetUser(string jmbg)
+        {
+            try
+            {
+                using (OrderDBEntities1 context = new OrderDBEntities1())
+                {
+                    tblUser user = (from r in context.tblUsers where r.JMBG == jmbg select r).First();
+                    
+                    return user;
+                }
+            }
+            catch (Exception ex)
+            {                
+                Console.WriteLine(ex.Message.ToString());
+                return null;
+            }
+        }
+        /// <summary>
         /// deny order
         /// </summary>
         /// <param name="orderID">order id</param>

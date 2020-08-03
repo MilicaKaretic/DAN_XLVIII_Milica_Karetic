@@ -92,14 +92,10 @@
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel.cs" />
-    <Compile Include="ViewModel\GuestViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="View\Employee.xaml.cs">
       <DependentUpon>Employee.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Guest.xaml.cs">
-      <DependentUpon>Guest.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -117,10 +113,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Employee.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Guest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
