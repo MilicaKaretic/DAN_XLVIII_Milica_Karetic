@@ -172,9 +172,13 @@ namespace DAN_XLIV_Milica_Karetic.ViewModel
                         service.ApproveOrder(orderId);
                         MessageBox.Show("Order approved");
                     }
-                    else
+                    else if(Order.OrderStatus == "approved")
                     {
                         MessageBox.Show("Order already approved");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Can't approve denied order");
                     }
                     using (OrderDBEntities1 context = new OrderDBEntities1())
                     {
